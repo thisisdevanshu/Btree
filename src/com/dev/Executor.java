@@ -13,10 +13,10 @@ public class Executor {
 		btree.insert(4, "four");
 		btree.insert(5, "five");
 		btree.insert(6, "six");
-		btree.insert(7, "seven");
+		btree.insert(6, "six");
 
-		System.out.println(btree.search(5));
-		System.out.println(btree.search(-3,4));
+		System.out.println(btree.search(6));
+		System.out.println(btree.search(-3,9));
 
 	}
 }

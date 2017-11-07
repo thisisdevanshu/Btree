@@ -12,6 +12,7 @@ public class PointerNode implements Node<Pointer> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public PointerNode(@SuppressWarnings("rawtypes") Node parent) {
 		this.parent = parent;
 	}

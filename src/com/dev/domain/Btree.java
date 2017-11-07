@@ -35,20 +35,40 @@ public class Btree implements Tree {
 		if (root instanceof DataNode) {
 			@SuppressWarnings("unchecked")
 			List<Pair> pairs = root.getData();
-			pairs.add(pair);
-			Collections.sort(pairs);
+			add(pairs, pair);
 			if (pairs.size() == order) {
 				split(root);
 			}
 		} else {
 			DataNode leaf = findLeaf(key, root);
 			List<Pair> pairs = leaf.getData();
-			pairs.add(pair);
-			Collections.sort(pairs);
+			add(pairs, pair);
 			if (pairs.size() == order) {
 				split(leaf);
 			}
 		}
+
+	}
+
+	private void add(List<Pair> pairs, Pair pair) {
+		if (pairs.size() == 0) {
+			pairs.add(pair);
+			return;
+		}
+
+		for (int i = 0; i < pairs.size(); i++) {
+			if (pairs.get(i).getKey() == pair.getKey()) {
+				pairs.get(i).getValue().addAll(pair.getValue());
+				return;
+			}
+			if (pairs.get(i).getKey() > pair.getKey()) {
+				pairs.add(i, pair);
+				return;
+			}
+
+		}
+
+		pairs.add(pair);
 
 	}
 
@@ -219,7 +239,7 @@ public class Btree implements Tree {
 	/**
 	 * 
 	 */
-	public String search(double key) {
+	public List<String> search(double key) {
 
 		DataNode dataNode = findLeaf(key, root);
 		for (Pair pair : dataNode.getData()) {
@@ -243,7 +263,7 @@ public class Btree implements Tree {
 			List<Pair> data = temp.getData();
 			for (Pair pair : data) {
 				if (pair.getKey() >= key1 && pair.getKey() <= key2) {
-					output.add(pair.getValue());
+					output.addAll(pair.getValue());
 				}
 			}
 			temp = temp.getNext();

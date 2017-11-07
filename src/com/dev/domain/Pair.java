@@ -1,13 +1,16 @@
 package com.dev.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pair implements Comparable<Pair> {
 
 	private double key;
-	private String value;
+	private List<String> value = new ArrayList<>();
 
 	public Pair(double key, String value) {
 		this.key = key;
-		this.value = value;
+		this.value.add(value);
 	}
 
 	public double getKey() {
@@ -18,11 +21,11 @@ public class Pair implements Comparable<Pair> {
 		this.key = key;
 	}
 
-	public String getValue() {
+	public List<String> getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(List<String> value) {
 		this.value = value;
 	}
 

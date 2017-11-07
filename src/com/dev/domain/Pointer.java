@@ -16,19 +16,21 @@ public class Pointer implements Comparable<Pointer> {
 		this.key = key;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Node getLeft() {
 		return left;
 	}
 
-	public void setLeft(Node left) {
+	public void setLeft(@SuppressWarnings("rawtypes") Node left) {
 		this.left = left;
 	}
 
+	@SuppressWarnings("rawtypes")
 	public Node getRight() {
 		return right;
 	}
 
-	public void setRight(Node right) {
+	public void setRight(@SuppressWarnings("rawtypes") Node right) {
 		this.right = right;
 	}
 

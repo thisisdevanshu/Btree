@@ -14,6 +14,7 @@ public class DataNode implements Node<Pair> {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public DataNode(@SuppressWarnings("rawtypes") Node parent) {
 		this.parent = parent;
 	}
