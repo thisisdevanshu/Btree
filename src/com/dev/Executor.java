@@ -6,7 +6,7 @@ public class Executor {
 
 	public static void main(String args[]) {
 
-		Btree btree = Btree.initialize(3);
+		Btree btree = Btree.initialize(7);
 		btree.insert(1, "one");
 		btree.insert(2, "two");
 		btree.insert(3, "three");
