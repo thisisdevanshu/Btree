@@ -18,8 +18,12 @@ public class Btree implements Tree {
 	 * 
 	 * @param order
 	 * @return
+	 * @throws Exception
 	 */
-	public static Btree initialize(int order) {
+	public static Btree initialize(int order) throws Exception {
+		if (order < 3) {
+			throw new Exception("Order must be greater than equal to 3");
+		}
 		Btree btree = new Btree();
 		btree.root = new DataNode();
 		btree.order = order;
@@ -60,8 +64,7 @@ public class Btree implements Tree {
 			if (pairs.get(i).getKey() == pair.getKey()) {
 				pairs.get(i).getValue().addAll(pair.getValue());
 				return;
-			}
-			if (pairs.get(i).getKey() > pair.getKey()) {
+			} else if (pairs.get(i).getKey() > pair.getKey()) {
 				pairs.add(i, pair);
 				return;
 			}
@@ -142,17 +145,23 @@ public class Btree implements Tree {
 					size / 2 + 1, size));
 			nu.setData(rightList);
 
+			// prev next re-assignment
+			nu.setNext(((DataNode) old).getNext());
+			if (!CommonUtil.isNull(((DataNode) old).getNext())) {
+				((DataNode) old).getNext().setPrev(nu);
+			}
+			((DataNode) temp).setNext(nu);
+			nu.setPrev((DataNode) temp);
+
+			if (!CommonUtil.isNull(((DataNode) old).getPrev())) {
+				((DataNode) old).getPrev().setNext(temp);
+			}
+			temp.setPrev(((DataNode) old).getPrev());
+
 			old = temp;
 			pointer.setLeft(old);
 			pointer.setRight(nu);
 			pointer.setKey(middle.getKey());
-
-			// prev next re-assignment
-			nu.setNext(((DataNode) old).getNext());
-			((DataNode) old).setNext(nu);
-
-			((DataNode) old).getNext().setPrev(nu);
-			nu.setPrev((DataNode) old);
 
 			// Adding middle to parent Node
 			List<Pointer> data = parent.getData();
@@ -187,10 +196,18 @@ public class Btree implements Tree {
 			List<Pointer> rightList = new ArrayList<>(old.getData().subList(
 					size / 2 + 1, size));
 			nu.setData(rightList);
+			for (Pointer p : rightList) {
+				p.getLeft().setParent(nu);
+				p.getRight().setParent(nu);
+			}
 
 			old = temp;
 			middle.setLeft(old);
 			middle.setRight(nu);
+			for (Pointer p : leftList) {
+				p.getLeft().setParent(old);
+				p.getRight().setParent(old);
+			}
 
 			// Adding middle to parent Node
 			List<Pointer> data = parent.getData();

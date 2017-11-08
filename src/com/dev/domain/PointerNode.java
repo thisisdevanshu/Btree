@@ -25,7 +25,8 @@ public class PointerNode implements Node<Pointer> {
 		return parent;
 	}
 
-	public void setParent(Node<Pointer> parent) {
+	@SuppressWarnings("unchecked")
+	public void setParent(@SuppressWarnings("rawtypes") Node parent) {
 		this.parent = parent;
 	}
 

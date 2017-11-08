@@ -9,4 +9,7 @@ public interface Node<T> {
 	@SuppressWarnings("rawtypes")
 	public Node getParent();
 	
+	@SuppressWarnings("rawtypes")
+	public void setParent(Node node);
+	
 }
