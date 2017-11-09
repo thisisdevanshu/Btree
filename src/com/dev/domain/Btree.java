@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Btree implements Tree {
-
+	// TODO binary search
 	@SuppressWarnings("rawtypes")
 	private Node root;
 	private int order;
@@ -264,7 +264,7 @@ public class Btree implements Tree {
 				return pair.getValue();
 			}
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 	/**
@@ -280,7 +280,11 @@ public class Btree implements Tree {
 			List<Pair> data = temp.getData();
 			for (Pair pair : data) {
 				if (pair.getKey() >= key1 && pair.getKey() <= key2) {
-					output.addAll(pair.getValue());
+					for(String value : pair.getValue()){
+						String str = "("+pair.getKey()+","+value+")";
+						output.add(str);
+					}
+					//output.addAll(pair.getValue());
 				}
 			}
 			temp = temp.getNext();
