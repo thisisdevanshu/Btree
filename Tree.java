@@ -1,4 +1,3 @@
-package com.dev.domain;
 
 import java.util.List;
 

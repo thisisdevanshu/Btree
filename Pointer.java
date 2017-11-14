@@ -1,4 +1,4 @@
-package com.dev.domain;
+
 
 public class Pointer implements Comparable<Pointer> {
 

@@ -1,4 +1,4 @@
-package com.dev;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -7,8 +7,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-import com.dev.domain.Btree;
-import com.dev.domain.CommonUtil;
+
 
 public class Executor {
 
@@ -19,10 +18,12 @@ public class Executor {
 			Long start = System.currentTimeMillis();
 			InputStreamReader reader = new InputStreamReader(
 					new FileInputStream("/home/himanshu/input.txt"));
+			@SuppressWarnings("resource")
 			BufferedReader bufReader = new BufferedReader(reader);
 
 			OutputStreamWriter writer = new OutputStreamWriter(
 					new FileOutputStream("/home/himanshu/output_file.txt"));
+			@SuppressWarnings("resource")
 			BufferedWriter bufWriter = new BufferedWriter(writer);
 
 			String input;
