@@ -1,10 +1,10 @@
-
 /**
+ * 
+ * 
+ * Utility class for common utilities.
  * 
  * @author devanshu
  * 
- *  Utility class for common utilities.
- *
  */
 public class CommonUtil {
 

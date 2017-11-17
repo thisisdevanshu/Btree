@@ -3,10 +3,12 @@ import java.util.List;
 
 /**
  * 
- * @author devanshu
  * 
- *         PointerNode is the implementation for the non leaf nodesof the Btree
- *         (B+Tree).
+ * 
+ * PointerNode is the implementation for the non leaf nodesof the Btree
+ * (B+Tree).
+ * 
+ * @author devanshu
  * 
  */
 public class PointerNode implements Node {

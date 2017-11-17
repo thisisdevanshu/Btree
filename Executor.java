@@ -5,15 +5,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 /**
  * 
- * @author devanshu
+ * This is the executor class of the ADS project Btree.
  * 
- *         This is the executor class to run the ADS project Btree.
+ * @author devanshu
  * 
  */
 public class Executor {
@@ -24,9 +23,9 @@ public class Executor {
 		BufferedWriter bufWriter = null;
 		OutputStreamWriter writer = null;
 		try {
+
 			long start = System.currentTimeMillis();
-			reader = new InputStreamReader(new FileInputStream(
-					"/home/himanshu/input.txt"));
+			reader = new InputStreamReader(new FileInputStream(args[0]));
 			bufReader = new BufferedReader(reader);
 
 			writer = new OutputStreamWriter(new FileOutputStream(
@@ -44,11 +43,12 @@ public class Executor {
 					insert(input, btree);
 				} else if (input.startsWith("Search")) {
 					searches++;
-					bufWriter.write("Upto now " + map.toString());
-					bufWriter.newLine();
+					// bufWriter.write("Upto now " + map.toString());
+					// bufWriter.newLine();
 					search(bufWriter, input, btree);
 				} else {
-					throw new Exception("Invalid Input " + input);
+					throw new OperationNotSupportedException("Invalid Input "
+							+ input);
 				}
 			}
 
@@ -57,10 +57,21 @@ public class Executor {
 			long time = System.currentTimeMillis() - start;
 			System.out.println("Done " + time + "ms");
 
+		} catch (IOException e) {
+			System.out.println("The program terminated with error: "
+					+ e.getMessage());
+
+		} catch (InvalidOrderException e) {
+			System.out.println("InvalidOrderException : " + e.getMessage());
+
+		} catch (OperationNotSupportedException e) {
+			System.out.println("OperationNotSupportedException : "
+					+ e.getMessage());
+
 		} catch (Exception e) {
 			System.out.println("The program terminated with error: "
-					+ e.getCause());
-			e.printStackTrace();
+					+ e.getMessage());
+
 		} finally {
 			try {
 				reader.close();
@@ -85,7 +96,7 @@ public class Executor {
 		} else if (inputPair.length == 1) {
 			output = keySearch(btree, inputPair);
 		} else {
-			throw new Exception("Operation not supported");
+			throw new OperationNotSupportedException("Operation not supported");
 		}
 
 		if (CommonUtil.isNull(output) || output.equals("")) {
@@ -123,7 +134,7 @@ public class Executor {
 		String[] inputPair = input.split(",");
 		double key = Double.parseDouble(inputPair[0].substring(1));
 		String value = inputPair[1].substring(0, inputPair[1].length() - 1);
-		map.put(key, value);
+		//map.put(key, value);
 		btree.insert(key, value);
 	}
 }

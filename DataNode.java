@@ -2,12 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ *
  * 
- * @author devanshu
+ * DataNode are implementation of the leaf Nodes of Btree. It has a parent node.
+ * The prev and next pointers form a doubly linked list of leaf nodes.
  * 
- *         DataNode are implementation of the leaf Nodes of Btree. It has a
- *         parent node. The prev and next pointers form a doubly linked list of
- *         leaf nodes.
+ * * @author devanshu
  * 
  */
 public class DataNode implements Node {

@@ -2,11 +2,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 
+ * 
+ * Implementation of Btree (B+ Tree). They are widely used in database indexing.
+ * 
  * @author devanshu
- * 
- * 
- *         Implementation of Btree (B+ Tree). They are widely used in database
- *         indexing.
  */
 
 public class Btree implements Tree {
@@ -28,7 +28,8 @@ public class Btree implements Tree {
 	 */
 	public static Btree initialize(int order) throws Exception {
 		if (order < 3) {
-			throw new Exception("Order must be greater than equal to 3");
+			throw new InvalidOrderException(
+					"Order must be greater than equal to 3");
 		}
 		Btree btree = new Btree();
 		btree.root = new DataNode();
@@ -44,6 +45,7 @@ public class Btree implements Tree {
 
 		Pair pair = new Pair(key, value);
 		if (root instanceof DataNode) {
+			@SuppressWarnings("unchecked")
 			List<Pair> pairs = (List<Pair>) root.getData();
 			add(pairs, pair);
 			if (pairs.size() == order) {
@@ -101,6 +103,7 @@ public class Btree implements Tree {
 			return (DataNode) node;
 		}
 
+		@SuppressWarnings("unchecked")
 		List<Pointer> pointerList = (List<Pointer>) node.getData();
 		int size = pointerList.size();
 		if (key < pointerList.get(0).getKey()) {
@@ -165,6 +168,7 @@ public class Btree implements Tree {
 		PointerNode nu = new PointerNode(parent);
 		old.getData();
 		// old Node
+		@SuppressWarnings("unchecked")
 		List<Pointer> leftList = new ArrayList<>((List<Pointer>) old.getData()
 				.subList(0, size / 2));
 		temp.setData(leftList);
@@ -173,6 +177,7 @@ public class Btree implements Tree {
 		Pointer middle = (Pointer) old.getData().get(size / 2);
 
 		// New Node
+		@SuppressWarnings("unchecked")
 		List<Pointer> rightList = new ArrayList<>((List<Pointer>) old.getData()
 				.subList(size / 2 + 1, size));
 		nu.setData(rightList);
@@ -217,6 +222,7 @@ public class Btree implements Tree {
 		DataNode nu = new DataNode(parent);
 
 		// old Node
+		@SuppressWarnings("unchecked")
 		List<Pair> leftList = new ArrayList<>((List<Pair>) old.getData()
 				.subList(0, size / 2 + 1));
 		temp.setData(leftList);
@@ -226,6 +232,7 @@ public class Btree implements Tree {
 		Pointer pointer = new Pointer();
 
 		// New Node
+		@SuppressWarnings("unchecked")
 		List<Pair> rightList = new ArrayList<>((List<Pair>) old.getData()
 				.subList(size / 2 + 1, size));
 		nu.setData(rightList);

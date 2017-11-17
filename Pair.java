@@ -1,13 +1,13 @@
-
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 
- * @author devanshu
  * 
- *         Pair are the elements that are saved at the leaf Nodes of the Btree.
- *         They are of the form (key,value).
+ * Pairs are the elements that are saved at the leaf Nodes of the Btree. They are
+ * of the form (key,value).
+ * 
+ * * @author devanshu
  * 
  */
 public class Pair implements NodeElement {

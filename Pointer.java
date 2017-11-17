@@ -1,10 +1,10 @@
-
 /**
  * 
- * @author devanshu
  * 
- *         Pointer is the elements that are saved at the non leaf nodes of the
- *         Btree.
+ * 
+ * Pointers are the elements that are stored at the non leaf nodes of the Btree.
+ * 
+ * * @author devanshu
  * 
  */
 public class Pointer implements NodeElement {

@@ -2,10 +2,11 @@ import java.util.List;
 
 /**
  * 
- * @author devanshu
  * 
- *         Node interface defines a structure for the various types of nodes of
- *         a BTree.
+ * 
+ * Node interface defines the types of nodes of a BTree.
+ * 
+ * @author devanshu
  * 
  */
 public interface Node {

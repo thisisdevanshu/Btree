@@ -2,9 +2,11 @@ import java.util.List;
 
 /**
  * 
+ * 
+ * Tree defines the various implementations of Tree Data Structure.
+ * 
  * @author devanshu
  * 
- *         Tree defines the various implemetation of Tree Data Structure.
  */
 public interface Tree {
 
