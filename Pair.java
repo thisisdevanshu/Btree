@@ -1,9 +1,16 @@
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pair implements Comparable<Pair> {
+/**
+ * 
+ * @author devanshu
+ * 
+ *         Pair are the elements that are saved at the leaf Nodes of the Btree.
+ *         They are of the form (key,value).
+ * 
+ */
+public class Pair implements NodeElement {
 
 	private double key;
 	private List<String> value = new ArrayList<>();
@@ -27,13 +34,6 @@ public class Pair implements Comparable<Pair> {
 
 	public void setValue(List<String> value) {
 		this.value = value;
-	}
-
-	@Override
-	public int compareTo(Pair arg0) {
-		// TODO Auto-generated method stub
-		return this.key >= arg0.getKey() ? this.key == arg0.getKey() ? 0 : 1
-				: -1;
 	}
 
 }

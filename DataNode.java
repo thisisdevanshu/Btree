@@ -1,12 +1,19 @@
-
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataNode implements Node<Pair> {
+/**
+ * 
+ * @author devanshu
+ * 
+ *         DataNode are implementation of the leaf Nodes of Btree. It has a
+ *         parent node. The prev and next pointers form a doubly linked list of
+ *         leaf nodes.
+ * 
+ */
+public class DataNode implements Node {
 
 	private List<Pair> data = new ArrayList<>();
-	private Node<Pointer> parent = null;
+	private Node parent = null;
 	private DataNode next = null;
 	private DataNode prev = null;
 
@@ -14,8 +21,7 @@ public class DataNode implements Node<Pair> {
 
 	}
 
-	@SuppressWarnings("unchecked")
-	public DataNode(@SuppressWarnings("rawtypes") Node parent) {
+	public DataNode(Node parent) {
 		this.parent = parent;
 	}
 
@@ -23,13 +29,11 @@ public class DataNode implements Node<Pair> {
 		return data;
 	}
 
-	public Node<Pointer> getParent() {
+	public Node getParent() {
 		return parent;
 	}
 
-
-	@SuppressWarnings("unchecked")
-	public void setParent(@SuppressWarnings("rawtypes") Node parent) {
+	public void setParent(Node parent) {
 		this.parent = parent;
 	}
 

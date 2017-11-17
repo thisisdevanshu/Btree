@@ -1,11 +1,16 @@
 
-
-public class Pointer implements Comparable<Pointer> {
+/**
+ * 
+ * @author devanshu
+ * 
+ *         Pointer is the elements that are saved at the non leaf nodes of the
+ *         Btree.
+ * 
+ */
+public class Pointer implements NodeElement {
 
 	private double key;
-	@SuppressWarnings("rawtypes")
 	private Node left;
-	@SuppressWarnings("rawtypes")
 	private Node right;
 
 	public double getKey() {
@@ -16,29 +21,20 @@ public class Pointer implements Comparable<Pointer> {
 		this.key = key;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public Node getLeft() {
 		return left;
 	}
 
-	public void setLeft(@SuppressWarnings("rawtypes") Node left) {
+	public void setLeft(Node left) {
 		this.left = left;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public Node getRight() {
 		return right;
 	}
 
-	public void setRight(@SuppressWarnings("rawtypes") Node right) {
+	public void setRight(Node right) {
 		this.right = right;
-	}
-
-	@Override
-	public int compareTo(Pointer arg0) {
-		// TODO Auto-generated method stub
-		return this.key >= arg0.getKey() ? this.key == arg0.getKey() ? 0 : 1
-				: -1;
 	}
 
 }
