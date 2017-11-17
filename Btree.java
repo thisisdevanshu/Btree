@@ -313,8 +313,9 @@ public class Btree implements Tree {
 		DataNode dataNode = findLeaf(key, root);
 		List<Pair> pairs = dataNode.getData();
 		int start = 0;
+		
 		int end = pairs.size() - 1;
-		while (start < end) {
+		while (start <= end) {
 			int mid = (start + end) / 2;
 			if (pairs.get(mid).getKey() == key) {
 				return pairs.get(mid).getValue();
