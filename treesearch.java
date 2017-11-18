@@ -5,8 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * 
@@ -15,7 +13,7 @@ import java.util.TreeMap;
  * @author devanshu
  * 
  */
-public class Executor {
+public class treesearch {
 
 	public static void main(String args[]) {
 		InputStreamReader reader = null;
@@ -34,17 +32,12 @@ public class Executor {
 
 			String input = bufReader.readLine();
 			Btree btree = Btree.initialize(Integer.parseInt(input));
-			int inserts = 0;
-			int searches = 0;
+			
 			while (!CommonUtil.isNull((input = bufReader.readLine()))) {
 
 				if (input.startsWith("Insert")) {
-					inserts++;
 					insert(input, btree);
 				} else if (input.startsWith("Search")) {
-					searches++;
-					// bufWriter.write("Upto now " + map.toString());
-					// bufWriter.newLine();
 					search(bufWriter, input, btree);
 				} else {
 					throw new OperationNotSupportedException("Invalid Input "
@@ -52,8 +45,6 @@ public class Executor {
 				}
 			}
 
-			System.out
-					.println(inserts + " inserts & " + searches + " searches");
 			long time = System.currentTimeMillis() - start;
 			System.out.println("Done " + time + "ms");
 
@@ -99,10 +90,9 @@ public class Executor {
 			throw new OperationNotSupportedException("Operation not supported");
 		}
 
-		if (CommonUtil.isNull(output) || output.equals("")) {
+		output = output.substring(1, output.length() - 1);
+		if (CommonUtil.isNull(output) || output.trim().equals("")) {
 			output = "Null";
-		} else {
-			output = output.substring(1, output.length() - 1);
 		}
 		bufWriter.write(output);
 		bufWriter.newLine();
@@ -127,14 +117,11 @@ public class Executor {
 		return output;
 	}
 
-	static Map<Double, String> map = new TreeMap<>();
-
 	private static void insert(String input, Btree btree) {
 		input = input.split("Insert")[1];
 		String[] inputPair = input.split(",");
 		double key = Double.parseDouble(inputPair[0].substring(1));
 		String value = inputPair[1].substring(0, inputPair[1].length() - 1);
-		//map.put(key, value);
 		btree.insert(key, value);
 	}
 }
