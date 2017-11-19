@@ -15,6 +15,12 @@ import java.io.OutputStreamWriter;
  */
 public class treesearch {
 
+	/**
+	 * This is the main function that handles the I/O and the execution of the
+	 * Btree implementation.
+	 * 
+	 * @param  input file
+	 */
 	public static void main(String args[]) {
 		InputStreamReader reader = null;
 		BufferedReader bufReader = null;
@@ -31,8 +37,8 @@ public class treesearch {
 			bufWriter = new BufferedWriter(writer);
 
 			String input = bufReader.readLine();
-			Btree btree = Btree.initialize(Integer.parseInt(input));
-			
+			Tree btree = Btree.initialize(Integer.parseInt(input));
+
 			while (!CommonUtil.isNull((input = bufReader.readLine()))) {
 
 				if (input.startsWith("Insert")) {
@@ -71,14 +77,24 @@ public class treesearch {
 				writer.close();
 			} catch (IOException e) {
 				System.out.println("The program terminated with error: "
-						+ e.getCause());
+						+ e.getMessage());
 			}
 
 		}
 	}
 
+	/**
+	 * Method to decide the type of searh (keySearch/RangeSerach) and to write
+	 * search results to output file.
+	 * 
+	 * @param bufWriter
+	 * @param input
+	 * @param btree
+	 * @throws Exception
+	 * @throws IOException
+	 */
 	private static void search(BufferedWriter bufWriter, String input,
-			Btree btree) throws Exception, IOException {
+			Tree btree) throws Exception, IOException {
 		input = input.split("Search")[1];
 		String[] inputPair = input.split(",");
 		String output = null;
@@ -98,7 +114,14 @@ public class treesearch {
 		bufWriter.newLine();
 	}
 
-	private static String keySearch(Btree btree, String[] inputPair) {
+	/**
+	 * Method for invoking single key search on the Btree.
+	 * 
+	 * @param btree
+	 * @param inputPair
+	 * @return search result {@link String}
+	 */
+	private static String keySearch(Tree btree, String[] inputPair) {
 		String output;
 		double key = Double.parseDouble(inputPair[0].substring(1,
 				(inputPair[0].length() - 1)));
@@ -106,7 +129,14 @@ public class treesearch {
 		return output;
 	}
 
-	private static String rangeSearch(Btree btree, String[] inputPair) {
+	/**
+	 * Method for invoking range search on the Btree.
+	 * 
+	 * @param btree
+	 * @param inputPair
+	 * @return search result {@link String}
+	 */
+	private static String rangeSearch(Tree btree, String[] inputPair) {
 		String output;
 		double key1 = Double.parseDouble(inputPair[0].substring(1));
 
@@ -117,7 +147,13 @@ public class treesearch {
 		return output;
 	}
 
-	private static void insert(String input, Btree btree) {
+	/**
+	 * Method for inserting data in the Btree.
+	 * 
+	 * @param input
+	 * @param btree
+	 */
+	private static void insert(String input, Tree btree) {
 		input = input.split("Insert")[1];
 		String[] inputPair = input.split(",");
 		double key = Double.parseDouble(inputPair[0].substring(1));

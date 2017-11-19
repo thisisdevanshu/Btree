@@ -14,6 +14,10 @@ public class Btree implements Tree {
 	private Node root;
 	private int order;
 
+	/**
+	 * The constructor is made private. The only way to create a new instance of
+	 * Btree is to use initialize method.
+	 */
 	private Btree() {
 
 	}
@@ -24,9 +28,11 @@ public class Btree implements Tree {
 	 * 
 	 * @param order
 	 * @return {@link Btree}
-	 * @throws InvalidOrderException if order is less than 3
+	 * @throws InvalidOrderException
+	 *             if order is less than 3
 	 */
-	public static Btree initialize(int order) throws InvalidOrderException,Exception {
+	public static Btree initialize(int order) throws InvalidOrderException,
+			Exception {
 		if (order < 3) {
 			throw new InvalidOrderException(
 					"Order must be greater than equal to 3");
