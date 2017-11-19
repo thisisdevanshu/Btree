@@ -24,9 +24,9 @@ public class Btree implements Tree {
 	 * 
 	 * @param order
 	 * @return {@link Btree}
-	 * @throws Exception
+	 * @throws InvalidOrderException if order is less than 3
 	 */
-	public static Btree initialize(int order) throws Exception {
+	public static Btree initialize(int order) throws InvalidOrderException,Exception {
 		if (order < 3) {
 			throw new InvalidOrderException(
 					"Order must be greater than equal to 3");
@@ -106,32 +106,34 @@ public class Btree implements Tree {
 		@SuppressWarnings("unchecked")
 		List<Pointer> pointerList = (List<Pointer>) node.getData();
 		int size = pointerList.size();
-		if (key < pointerList.get(0).getKey()) {
+
+		if (key <= pointerList.get(0).getKey()) {
 			return findLeaf(key, pointerList.get(0).getLeft());
 		}
-		if (key >= pointerList.get(size - 1).getKey()) {
+		if (key > pointerList.get(size - 1).getKey()) {
 			return findLeaf(key, pointerList.get(size - 1).getRight());
 		}
-
+		if (key == pointerList.get(size - 1).getKey()) {
+			return findLeaf(key, pointerList.get(size - 1).getLeft());
+		}
 		int start = 0;
 		int end = size;
 		int mid = 0;
 		while (start <= end) {
 			mid = (start + end) / 2;
-			// System.out.println(start + " " + mid + " " + end);
 			if (mid == start || mid == end) {
 				break;
 			}
 			if (pointerList.get(mid).getKey() > key) {
 				end = mid;
+			} else if (pointerList.get(mid).getKey() == key) {
+				return findLeaf(key, pointerList.get(size - 1).getLeft());
 			} else {
 				start = mid;
 			}
 
 		}
 		return findLeaf(key, pointerList.get(mid).getRight());
-
-		// return null;
 	}
 
 	/**
@@ -305,7 +307,7 @@ public class Btree implements Tree {
 	}
 
 	/**
-	 * Methdd to search for a particular key in the Btree
+	 * Method to search for a particular key in the Btree
 	 * 
 	 */
 	public List<String> search(double key) {
@@ -313,7 +315,7 @@ public class Btree implements Tree {
 		DataNode dataNode = findLeaf(key, root);
 		List<Pair> pairs = dataNode.getData();
 		int start = 0;
-		
+
 		int end = pairs.size() - 1;
 		while (start <= end) {
 			int mid = (start + end) / 2;
