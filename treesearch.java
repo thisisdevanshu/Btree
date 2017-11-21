@@ -19,7 +19,8 @@ public class treesearch {
 	 * This is the main function that handles the I/O and the execution of the
 	 * Btree implementation.
 	 * 
-	 * @param  input file
+	 * @param input
+	 *            file
 	 */
 	public static void main(String args[]) {
 		InputStreamReader reader = null;
@@ -45,9 +46,10 @@ public class treesearch {
 					insert(input, btree);
 				} else if (input.startsWith("Search")) {
 					search(bufWriter, input, btree);
+				} else if (CommonUtil.isNull(input)	|| input.trim().length() == 0) {
+					continue;
 				} else {
-					throw new OperationNotSupportedException("Invalid Input "
-							+ input);
+					throw new OperationNotSupportedException("Invalid Input "+ input);
 				}
 			}
 
